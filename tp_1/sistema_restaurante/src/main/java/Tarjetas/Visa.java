@@ -1,9 +1,12 @@
 package Tarjetas;
 
-public class VisaCobro implements TarjetaCobro {
-
+public class Visa implements Tarjeta {
+    private  String nroTarjeta;
     @Override
     public float aplicarDescuento(float totalBebidas, float totalPlatos) {
-        return (float) (totalPlatos + (totalBebidas * 0.03));
+        return (float) (totalBebidas * 0.03);
+    }
+    public Visa(String nroTarjeta){
+        this.nroTarjeta = nroTarjeta;
     }
 }

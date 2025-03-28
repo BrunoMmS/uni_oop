@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
-
 public enum TypeItem {
+    BEBIDA,
+    PLATO
 }

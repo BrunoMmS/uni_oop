@@ -1,5 +1,5 @@
 package Tarjetas;
 
 public interface Tarjeta {
-    float cobrar(float totalBebidas, float totalPlatos);
+    float aplicarDescuento(float totalBebidas, float totalPlatos);
 }
