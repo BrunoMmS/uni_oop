@@ -10,10 +10,10 @@ public class ConcursoTest {
     public void test_1(){
         //setup
         var participante = new Participante("Maximiliano", "Sosa", "123456");
-        var concurso = new Concurso("Best Linuxero", LocalDate.now(), LocalDate.of(2025, 3, 31));
+        var concurso = new Concurso("Best Linuxero", LocalDate.now(), LocalDate.now().plusDays(10));
 
         //ejercitacion
-        concurso.inscribirParticipante(participante, LocalDate.of(2025, 3, 23 ));
+        concurso.inscribirParticipante(participante, LocalDate.now().plusDays(3));
 
         //
         assertTrue(concurso.estaParticipante(participante));
@@ -23,7 +23,7 @@ public class ConcursoTest {
     public void test_2(){
         //setup
         var participante = new Participante("Maximiliano", "Sosa", "123456");
-        var concurso = new Concurso("Best Linuxero", LocalDate.now(), LocalDate.of(2025, 3, 31));
+        var concurso = new Concurso("Best Linuxero", LocalDate.now(), LocalDate.now().plusDays(10));
 
         //ejercitacion
         concurso.inscribirParticipante(participante, LocalDate.now());
@@ -36,11 +36,11 @@ public class ConcursoTest {
     public void test_3() {
         // Setup
         var participante = new Participante("Maximiliano", "Sosa", "123456");
-        var concurso = new Concurso("Best Linuxero", LocalDate.now(), LocalDate.of(2025, 3, 31));
+        var concurso = new Concurso("Best Linuxero", LocalDate.now(), LocalDate.now().plusDays(10));
 
         // Ejercitación
         try{
-            concurso.inscribirParticipante(participante, LocalDate.of(2025, 4, 1));
+            concurso.inscribirParticipante(participante, LocalDate.now().plusDays(11));
         } catch (RuntimeException e) {}
 
         //
