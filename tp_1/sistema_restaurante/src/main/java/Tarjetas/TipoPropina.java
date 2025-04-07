@@ -1,3 +1,5 @@
+package Tarjetas;
+
 public enum TipoPropina {
     BAJA(0.02),
     MEDIA(0.03),

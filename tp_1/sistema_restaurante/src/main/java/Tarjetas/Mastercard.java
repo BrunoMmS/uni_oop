@@ -1,8 +1,12 @@
 package Tarjetas;
 
-public class Mastercard implements TarjetaCobro {
+public class Mastercard implements Tarjeta {
+    private String nroTarjeta;
     @Override
     public float aplicarDescuento(float totalBebidas, float totalPlatos) {
-        return (float) (totalBebidas + (totalPlatos * 0.02));
+        return (float) (totalPlatos * 0.02);
+    }
+    public Mastercard(String nroTarjeta){
+        this.nroTarjeta = nroTarjeta;
     }
 }
