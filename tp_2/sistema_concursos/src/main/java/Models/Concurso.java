@@ -2,6 +2,7 @@ package Models;
 
 import Exporters.DataExporter;
 import Exporters.FileExporter;
+import Notifications.Notification;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -14,13 +15,15 @@ public class Concurso {
     private final LocalDate startDate;
     private final LocalDate endDate;
     private ArrayList<Participante> participantes;
+    private Notification systemNotification;
 
-    public Concurso(String nombre, LocalDate startDate, LocalDate endDate) {
+    public Concurso(String nombre, LocalDate startDate, LocalDate endDate, Notification systemNotification) {
         this.id = UUID.randomUUID();
         this.nombre = nombre;
         this.startDate = startDate;
         this.endDate = endDate;
         this.participantes = new ArrayList<>();
+        this.systemNotification = systemNotification;
     }
     public Concurso(UUID id, String nombre, LocalDate startDate, LocalDate endDate){
         this.id = id;
@@ -41,6 +44,7 @@ public class Concurso {
         }
         participantes.add(unParticipante);
         exporter.export(unParticipante, id, fechaInscripcion);
+        systemNotification.send(unParticipante, this.nombre, fechaInscripcion);
         return true;
     }
 
