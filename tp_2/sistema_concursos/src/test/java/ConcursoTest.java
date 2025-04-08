@@ -1,4 +1,5 @@
 import Exporters.DatabaseExporter;
+import Exporters.EmailExporter;
 import Exporters.FileExporter;
 import JDBC.ConcursoJDBC;
 import Models.Concurso;
@@ -28,6 +29,21 @@ public class ConcursoTest {
     public void testDatabaseExporter(){
         //setup
         var databaseExporter = new DatabaseExporter();
+        var participante = new Participante("Maximiliano", "Sosa", "12345456");
+        var concurso = new Concurso("Best Linuxero", LocalDate.now(), LocalDate.now().plusDays(10));
+        ConcursoJDBC.crear(concurso);
+
+        //ejercitacion
+        concurso.inscribirParticipante(participante, LocalDate.now(), databaseExporter);
+
+        //
+        assertTrue(concurso.estaParticipante(participante));
+        assertEquals(10, participante.getPoints());
+    }
+    @Test
+    public void testEmailExporter(){
+        //setup
+        var databaseExporter = new EmailExporter();
         var participante = new Participante("Maximiliano", "Sosa", "12345456");
         var concurso = new Concurso("Best Linuxero", LocalDate.now(), LocalDate.now().plusDays(10));
         ConcursoJDBC.crear(concurso);
