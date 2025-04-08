@@ -1,17 +1,25 @@
 package Models;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class  Participante {
-    private static int idCounter;
     private int id;
     private String name;
     private String lastName;
     private int points;
     private String dni;
+    private UUID idConcurso;
 
     public Participante(String name, String lastName, String dni){
-        this.id = ++idCounter;
+        this.name = name;
+        this.lastName = lastName;
+        this.dni  = dni;
+        points = 0;
+    }
+    public Participante(int id, UUID idConcurso, String name, String lastName, String dni){
+        this.id = id;
+        this.idConcurso = idConcurso;
         this.name = name;
         this.lastName = lastName;
         this.dni  = dni;
@@ -38,5 +46,21 @@ public class  Participante {
     }
     public int getId(){
         return id;
+    }
+    public UUID getIdConcurso(){
+        return idConcurso;
+    }
+    public void setConcurso(UUID idConcurso){
+        this.idConcurso = idConcurso;
+    }
+
+    public String getName(){
+        return name;
+    }
+    public String getLastName(){
+        return lastName;
+    }
+    public String getDni(){
+        return dni;
     }
 }

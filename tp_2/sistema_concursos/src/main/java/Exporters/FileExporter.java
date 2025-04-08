@@ -3,6 +3,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
+
 import Models.*;
 
 public class FileExporter implements DataExporter{
@@ -11,9 +13,9 @@ public class FileExporter implements DataExporter{
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @Override
-    public void export(Participante p, int idConcurso, LocalDate fechaInscripcion) {
+    public void export(Participante p, UUID idConcurso, LocalDate fechaInscripcion) {
         try (FileWriter writer = new FileWriter(FILE_PATH, true)) {
-            String linea = String.format("%s, %d, %d%n",
+            String linea = String.format("%s, %d, %s%n",
                         LocalDate.now().format(FORMATTER),
                         p.getId(),
                         idConcurso);

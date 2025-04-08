@@ -6,24 +6,30 @@ import Exporters.FileExporter;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Concurso {
-    private DataExporter exporter;
-    private static int idCounter;
-    private final int id;
+    private UUID id;
     private final String nombre;
     private final LocalDate startDate;
     private final LocalDate endDate;
     private ArrayList<Participante> participantes;
 
-    public Concurso(String nombre, LocalDate startDate, LocalDate endDate){
-        this.id = ++idCounter;
+    public Concurso(String nombre, LocalDate startDate, LocalDate endDate) {
+        this.id = UUID.randomUUID();
+        this.nombre = nombre;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.participantes = new ArrayList<>();
+    }
+    public Concurso(UUID id, String nombre, LocalDate startDate, LocalDate endDate){
+        this.id = id;
         this.nombre = nombre;
         this.startDate = startDate;
         this.endDate = endDate;
         participantes = new ArrayList<>();
     }
-    public boolean inscribirParticipante(Participante unParticipante, LocalDate fechaInscripcion){
+    public boolean inscribirParticipante(Participante unParticipante, LocalDate fechaInscripcion, DataExporter exporter){
         if( fechaInscripcion.isAfter(endDate)){
             throw new RuntimeException("El concurso ha finalizado");
         }
@@ -45,7 +51,16 @@ public class Concurso {
     public ArrayList<Participante> getParticipantes(){
         return participantes;
     }
-    public int getId(){
+    public UUID getId(){
         return id;
+    }
+    public String getNombre(){
+        return nombre;
+    }
+    public LocalDate getStartDate(){
+        return startDate;
+    }
+    public LocalDate getEndDate(){
+        return endDate;
     }
 }
